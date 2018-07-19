@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Tic-Tac-Toe</title>
+        
+    <script>
+        var filled, winner, content, canvas, ctx, activeplayer = 0,totalfilled=0;
+        
+        init();
+        
+        function clicked(number){
+            canvas = document.getElementById("c"+number);
+            
+            ctx = canvas.getContext('2d');
+            
+            if(filled[number-1] ==  false){
+                if(activeplayer==0){
+                    ctx.beginPath();
+                    ctx.strokeStyle = 'blue';
+                    ctx.lineWidth=9;
+                    ctx.moveTo(20,20);
+                    ctx.lineTo(50,50);
+                    ctx.moveTo(50,20);
+                    ctx.lineTo(20,50);
+                    ctx.stroke();
+                    ctx.closePath();
+                    content[number-1] = 'X';
+                }
+                
+                else{
+                    ctx.beginPath();
+                    ctx.strokeStyle = 'red';
+                    ctx.lineWidth=9;
+                    ctx.arc(35,37,20,0,Math.PI*2,true);
+                    ctx.stroke();
+                    ctx.closePath();
+                    content[number-1] = 'O';
+                }
+                
+                activeplayer===0? activeplayer=1 : activeplayer=0;
+                filled[number-1] = true;
+                totalfilled++;
+                isWinner(content[number-1]);
+                
+                 if(totalfilled==9){
+                    alert("Game Over!");
+                    location.reload(true);
+                }
+                
+            }
+            
+            else{
+                alert("It's already filled!");
+            }
+        }
+    
+        function isWinner(sym){
+            for(var j=0;j<winner.length;j++){
+                if(content[winner[j][0]] == sym && content[winner[j][1]] == sym && content[winner[j][2]] == sym){
+                    alert(sym+ " won!");
+                    location.reload(true);
+                }
+            }
+        }
+        
+        function init() {
+            filled = new Array();
+            content = new Array();
+            winner = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];  
+            
+            for(var i=0; i<=8; i++){
+                filled[i] = false;
+                content[i] = '';
+        }
+    }
+       
+    </script>
+        
+    </head>
+    <body>
+        <h1>Tic-Tac-Toe</h1>
+        <div id="row">
+        <canvas id="c1" width="70" height="70" onclick="clicked(1)"></canvas>
+        <canvas id="c2" width="70" height="70" onclick="clicked(2)"></canvas>
+        <canvas id="c3" width="70" height="70" onclick="clicked(3)"></canvas><br>
+        <canvas id="c4" width="70" height="70" onclick="clicked(4)"></canvas>
+        <canvas id="c5" width="70" height="70" onclick="clicked(5)"></canvas>
+        <canvas id="c6" width="70" height="70" onclick="clicked(6)"></canvas><br>
+        <canvas id="c7" width="70" height="70" onclick="clicked(7)"></canvas>
+        <canvas id="c8" width="70" height="70" onclick="clicked(8)"></canvas>
+        <canvas id="c9" width="70" height="70" onclick="clicked(9)"></canvas>
+        </div>
+    </body>
+</html>
+
+
+
