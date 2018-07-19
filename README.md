@@ -3,8 +3,8 @@ Tic-tac-toe is a game for two players, X and O, who take turns marking the space
                                                                           -Wikipedia
 																																					
 Technologies used:
-*HTML5 - content
-*CSS3 - styling
-*JavaScript - logic 
+HTML5 - content                                                                                    
+CSS3 - styling
+JavaScript - logic 
 
 Two players 'x' and 'O' take turns and play the game using a mouse. 
